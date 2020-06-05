@@ -23,6 +23,7 @@ public class MainApplication extends Application implements ReactApplication {
         @Override
         protected List<ReactPackage> getPackages() {
           @SuppressWarnings("UnnecessaryLocalVariable")
+		final
           List<ReactPackage> packages = new PackageList(this).getPackages();
           // Packages that cannot be autolinked yet can be added manually here, for example:
           // packages.add(new MyReactNativePackage());
@@ -45,6 +46,7 @@ public class MainApplication extends Application implements ReactApplication {
     super.onCreate();
     SoLoader.init(this, /* native exopackage */ false);
     initializeFlipper(this, getReactNativeHost().getReactInstanceManager());
+
   }
 
   /**
@@ -55,24 +57,24 @@ public class MainApplication extends Application implements ReactApplication {
    * @param reactInstanceManager
    */
   private static void initializeFlipper(
-      Context context, ReactInstanceManager reactInstanceManager) {
+      final Context context, final ReactInstanceManager reactInstanceManager) {
     if (BuildConfig.DEBUG) {
       try {
         /*
          We use reflection here to pick up the class that initializes Flipper,
         since Flipper library is not available in release mode
         */
-        Class<?> aClass = Class.forName("com.rogueone.ReactNativeFlipper");
+        final Class<?> aClass = Class.forName("com.rogueone.ReactNativeFlipper");
         aClass
             .getMethod("initializeFlipper", Context.class, ReactInstanceManager.class)
             .invoke(null, context, reactInstanceManager);
-      } catch (ClassNotFoundException e) {
+      } catch (final ClassNotFoundException e) {
         e.printStackTrace();
-      } catch (NoSuchMethodException e) {
+      } catch (final NoSuchMethodException e) {
         e.printStackTrace();
-      } catch (IllegalAccessException e) {
+      } catch (final IllegalAccessException e) {
         e.printStackTrace();
-      } catch (InvocationTargetException e) {
+      } catch (final InvocationTargetException e) {
         e.printStackTrace();
       }
     }

@@ -2,6 +2,7 @@ package com.rogueone;
 
 import com.facebook.react.ReactActivity;
 
+
 public class MainActivity extends ReactActivity {
 
   /**
