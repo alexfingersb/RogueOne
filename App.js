@@ -8,6 +8,7 @@ import {
   Button,
 } from 'react-native';
 import auth from '@react-native-firebase/auth';
+import { LoginManager, AccessToken } from 'react-native-fbsdk';
 
 const App = () => {
   // Set an initializing state whilst Firebase connects
@@ -19,12 +20,42 @@ const App = () => {
   const handleEmailPasswordLogin = () => {
     auth()
       .signInWithEmailAndPassword(email, password)
-      .then((data) => {
-        console.log('data=', data);
-        setUser(data.user);
+      .then((userCredential) => {
+        setUser(userCredential.user);
       })
       .catch((error) => console.log(error));
   };
+
+  const FacebookSignIn = () => {
+    return (
+      <Button
+        title="Facebook Sign-In"
+        onPress={() => onFacebookButtonPress().then(() => console.log('Signed in with Facebook!'))}
+      />
+    );
+  }
+
+  const onFacebookButtonPress = async () => {
+    // Attempt login with permissions
+    const result = await LoginManager.logInWithPermissions(['public_profile', 'email']);
+
+    if (result.isCancelled) {
+      throw 'User cancelled the login process';
+    }
+
+    // Once signed in, get the users AccesToken
+    const data = await AccessToken.getCurrentAccessToken();
+
+    if (!data) {
+      throw 'Something went wrong obtaining access token';
+    }
+
+    // Create a Firebase credential with the AccessToken
+    const facebookCredential = auth.FacebookAuthProvider.credential(data.accessToken);
+
+    // Sign-in the user with the credential
+    return auth().signInWithCredential(facebookCredential);
+  }
 
   console.log('user is ', user);
 
@@ -50,6 +81,7 @@ const App = () => {
             color='#C2185B'
             onPress={handleEmailPasswordLogin}
           />
+          <FacebookSignIn/>
         </View>
       </SafeAreaView>
     );
