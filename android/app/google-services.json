@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1016774433295",
+    "firebase_url": "https://app-one-5ebc2.firebaseio.com",
+    "project_id": "app-one-5ebc2",
+    "storage_bucket": "app-one-5ebc2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1016774433295:android:115dee79bf83154f75617a",
+        "android_client_info": {
+          "package_name": "com.rogueone"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1016774433295-4f1edg5m25uo69giri9lhqlfqbucf9i0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBqO-qNeYYQrKF31DttlJuJ-myZJudE8tw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1016774433295-4f1edg5m25uo69giri9lhqlfqbucf9i0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
